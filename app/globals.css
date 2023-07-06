@@ -63,3 +63,35 @@
   overflow: hidden;
   flex: 1 1 0;
 }
+
+.card__container {
+  display: flex;
+  flex-direction: row;
+  margin: 2px;
+  height: 14pc;
+  position: relative;
+  max-width: 100pc;
+  margin-top: 5px;
+}
+
+.card {
+  display: flex;
+  position: relative;
+  max-width: 18pc;
+  border: 1px solid black;
+  height: 14pc;
+  flex-direction: column;
+  flex: 1 1 0;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.card__image-container {
+  position: relative;
+  height: 80pc;
+}
+
+.card__header {
+  position: relative;
+  height: 20pc;
+  border: 2px solid red;
+}
