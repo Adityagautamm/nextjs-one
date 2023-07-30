@@ -1,13 +1,13 @@
-import React from "react";
+import Image from "next/image";
 
 const Card = () => {
   return (
     <div className="card">
       <div className="card__image-container">
-        <h1>Image</h1>
+        <Image src="/h1.webp" alt="hero" fill className="card__image" />
       </div>
       <div className="card__header">
-        <h1 className="card__title">card title</h1>
+        <h1 className="card__title">EV</h1>
       </div>
     </div>
   );
