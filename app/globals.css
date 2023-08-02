@@ -74,8 +74,7 @@
   margin-top: 5px;
   justify-content: space-around;
 }
-/* below  
-max-width: 18pc;*/
+
 .card {
   max-width: 18pc;
   display: flex;
@@ -167,4 +166,51 @@ max-width: 18pc;*/
   padding: 3px 5px 3px 5px;
   font-weight: 800;
   color: aquamarine;
+}
+
+.catelouge__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  max-width: 100pc;
+  min-height: 90vh;
+  margin-top: 5px;
+  margin-left: 10px;
+  justify-content: flex-start;
+  align-content: flex-start;
+  border: 4px solid #80f6ff;
+}
+
+.catelouge {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  position: relative;
+  border: 1px solid black;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+.catelouge__image-container {
+  position: relative;
+  height: 80pc;
+  align-items: center;
+}
+
+.catelouge__header {
+  position: relative;
+  height: 20pc;
+  border: 2px solid red;
+}
+
+.catelouge__image {
+  width: 100pc;
+  height: 100pc;
+  object-fit: contain;
+}
+
+.catelouge__title {
+  font-weight: bold;
+  font-size: x-large;
 }
