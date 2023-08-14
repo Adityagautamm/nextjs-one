@@ -1,17 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const CatelougeCard = () => {
+const CatelougeCard = ({ product }) => {
+  const handleClick = (id) => {
+    router.push(`/product?id=${id}`);
+  };
+
   return (
     <div className="catelouge">
       <div className="catelouge__image-container">
-        <Link href="/category/nike">
-          <Image src="/h1.webp" alt="hero" fill className="catelouge__image" />
+        <Link href="/product?id=12345">
+          <Image
+            src={`/${product.image}`}
+            alt="hero"
+            fill
+            className="catelouge__image"
+          />
         </Link>
       </div>
-
+      {console.log("product", product)}
       <div className="catelouge__header">
-        <h1 className="catelouge__title">EV</h1>
+        <h1 className="catelouge__title">{product.name}</h1>
       </div>
     </div>
   );

@@ -13,6 +13,11 @@ export const GET = async (request) => {
       { name: "three", price: "$60", image: "one.webp" },
       { name: "four", price: "$70", image: "one.webp" },
       { name: "five", price: "$80", image: "one.webp" },
+      { name: "six", price: "$50", image: "one.webp" },
+      { name: "seven", price: "$40", image: "one.webp" },
+      { name: "eight", price: "$60", image: "one.webp" },
+      { name: "nine", price: "$70", image: "one.webp" },
+      { name: "ten", price: "$80", image: "one.webp" },
     ];
 
     return new Response(JSON.stringify(data), { status: 200 });
