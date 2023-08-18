@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const page = () => {
@@ -7,21 +8,23 @@ const page = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
+  const productId = searchParams.get("id");
+  const [productData, setProductData] = useState(null);
 
   useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
+    const getProductData = async () => {
+      const response = await fetch(`/api/product/${productId}`);
       const data = await response.json();
 
-      setPost({
-        prompt: data.prompt,
-        tag: data.tag,
+      setProductData({
+        data,
       });
     };
 
-    if (promptId) getPromptDetails();
-  }, [promptId]);
+    if (productId) getProductData();
+  }, [productId]);
+
+  console.log(productData);
   return (
     <div className="product__container">
       <div className="product__containe-left">
