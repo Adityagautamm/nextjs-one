@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-
+import React, { useState } from "react";
+import { AiOutlineShopping } from "react-icons/ai";
+import { Cart } from "@/components";
+//Add cart logo and the use state for that https://www.youtube.com/watch?v=4mOkFXyxfsU&t=243s
 const Navbar = () => {
+  const [showCart, setShowCart] = useState(false);
   return (
     <header className="navbar">
       <nav className="navbar__body">
@@ -39,7 +44,15 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar__left-button">
-          <button> Sign In </button>
+          <button
+            type="button"
+            className="cart-icon"
+            onClick={() => setShowCart(true)}
+          >
+            <AiOutlineShopping />
+            <span className="cart-item-qty">1</span>
+          </button>
+          {showCart && <Cart />}
         </div>
       </nav>
     </header>

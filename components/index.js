@@ -3,5 +3,6 @@ import Card from "./Card";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import CatelougeCard from "./CatelougeCard";
+import Cart from "./Cart";
 
-export { Hero, Card, Footer, Navbar, CatelougeCard };
+export { Hero, Card, Footer, Navbar, CatelougeCard, Cart };

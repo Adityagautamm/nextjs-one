@@ -9,28 +9,26 @@ const page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const productId = searchParams.get("id");
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     const getProductData = async () => {
       const response = await fetch(`/api/product/${productId}`);
       const data = await response.json();
 
-      setProductData({
-        data,
-      });
+      setProductData(data);
     };
 
     if (productId) getProductData();
   }, [productId]);
 
   console.log(productData);
+  console.log("productId", productId);
   return (
     <div className="product__container">
       <div className="product__containe-left">
-        left
         <Image
-          src="/one.webp"
+          src={`/${productData?.image}`}
           alt="hero"
           fill
           className="product__containe-left-image"
@@ -43,6 +41,7 @@ const page = () => {
           Prices are slashed for End of Year sale. No one does it better than
           us. Call us 1800-001-001
         </p>
+        <h1 className="product__price">{`$${productData?.price}`}</h1>
         <button onClick={handleCLick} className="add-to-cart-btn">
           Add to cart
         </button>

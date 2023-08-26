@@ -9,7 +9,7 @@ const CatelougeCard = ({ product }) => {
   return (
     <div className="catelouge">
       <div className="catelouge__image-container">
-        <Link href="/product?id=12345">
+        <Link href="/product?id=123401">
           <Image
             src={`/${product.image}`}
             alt="hero"

@@ -13,7 +13,7 @@ export const GET = async (request, { params }) => {
       switch (productId) {
         case "123401":
           // Code to handle product 1
-          return { name: "Product 1", price: 10.99 };
+          return { name: "Product 1", price: 10.99, image: "123401.webp" };
 
         case "123402":
           // Code to handle product 2
