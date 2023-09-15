@@ -354,3 +354,74 @@
   color: #fff;
   cursor: pointer;
 }
+.product-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: 1 1 0;
+}
+
+.product {
+  width: 80%;
+  height: 150px;
+  border: solid 2px red;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+.cart-product-image {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  object-fit: contain;
+  overflow: hidden;
+}
+
+.item-desc {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-end;
+  border: solid 2px green;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: start;
+}
+.item-desc-top {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.item-desc-bottom {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity-desc {
+  display: flex;
+  position: relative;
+  align-items: center;
+  border: 1px solid #808080;
+  font-size: x-large;
+  padding: 6px;
+}
+
+.quantity-desc > span {
+  font-size: 16px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.minus {
+  border-right: 1px solid gray;
+}
+
+.num {
+  border-right: 1px solid gray;
+}

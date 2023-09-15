@@ -1,8 +1,15 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { AiOutlineLeft, AiOutlineShopping } from "react-icons/ai";
-
+import {
+  AiOutlineMinus,
+  AiOutlinePlus,
+  AiOutlineLeft,
+  AiOutlineShopping,
+} from "react-icons/ai";
+import { TiDeleteOutline } from "react-icons/ti";
+import { CartCard } from ".";
 const Cart = () => {
   // make it global so that any page can close cart use jota
   const [showCart, setShowCart] = useState(false);
@@ -15,7 +22,7 @@ const Cart = () => {
   } = {
     totalPrice: "10",
     totalQuantities: "2",
-    cartItems: { length: 0 },
+    cartItems: { length: 1 },
     setShowCart: "40",
     toggleCartItemQuanitity: "50",
     onRemove: "60",
@@ -47,6 +54,22 @@ const Cart = () => {
             </Link>
           </div>
         )}
+        <div className="product-container">
+          {
+            /* {cartItems.length >= 1 &&
+            cartItems.map((item) => (
+              <div className="product" key={item._id}>
+                <Image src="one.webp" className="cart-product-image" />
+                <div className="item-desc">
+                  <div className="item-desc-top">TOP</div>
+                  <div className="item-desc-bottom">BOTTOM</div>
+                </div>
+              </div>
+            ))} */
+            // prototype, update code once Jotai is set
+            cartItems.length >= 1 && <CartCard />
+          }
+        </div>
       </div>
     </div>
   );
