@@ -10,11 +10,8 @@ let dbConnection;
 const dbName = "sneakerstore";
 
 module.exports = {
-  connectToDb: (cb) => {
-    MongoClient.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+  connectToDb: async (cb) => {
+    await MongoClient.connect(url, {})
       .then((client) => {
         dbConnection = client.db();
         return cb();

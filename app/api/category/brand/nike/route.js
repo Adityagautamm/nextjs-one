@@ -17,12 +17,25 @@ export const GET = async (request) => {
       }
     });
 
-    //   db.collection("sneakerDetails")
-    //     .find()
-    //     .then(() => {})
-    //     .catch(() => {
-    //       console.log("Mongo db data connect issue");
-    //     });
+    try {
+      const collection = db.collection("sneakerDetails");
+      const sneakerData = await collection.find({}).toArray();
+      console.log("sneaker data is here", JSON.stringify(sneakerData));
+    } catch (error) {
+      console.log("collection fetching error", error);
+    }
+
+    // db.collection("sneakerDetails")
+    //   .find()
+    //   .then((data) => {
+    //     // forEach((data) => {
+    //     //   console.log("sneakerDetails collection data", data);
+    //     // });
+    //     console.log("sneakerDetails collection data");
+    //   })
+    //   .catch(() => {
+    //     console.log("Mongo db data connect issue");
+    //   });
 
     const data = [
       { name: "one", price: "$50", image: "one.webp" },
