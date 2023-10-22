@@ -5,9 +5,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { AiOutlineShopping } from "react-icons/ai";
 import { Cart } from "@/components";
+import { UseShowCart } from "../app/store/cartStore";
 //Add cart logo and the use state for that https://www.youtube.com/watch?v=4mOkFXyxfsU&t=243s
 const Navbar = () => {
-  const [showCart, setShowCart] = useState(false);
+  const [showCart, setShowCart] = UseShowCart();
   return (
     <header className="navbar">
       <nav className="navbar__body">

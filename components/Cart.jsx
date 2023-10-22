@@ -10,9 +10,11 @@ import {
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import { CartCard } from ".";
+import { UseShowCart } from "../app/store/cartStore";
+
 const Cart = () => {
   // make it global so that any page can close cart use jota
-  const [showCart, setShowCart] = useState(false);
+  const [showCart, setShowCart] = UseShowCart();
   const {
     totalPrice,
     totalQuantities,
