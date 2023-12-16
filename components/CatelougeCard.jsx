@@ -3,15 +3,15 @@ import Link from "next/link";
 
 const CatelougeCard = ({ product }) => {
   const handleClick = (id) => {
-    router.push(`/product?id=${id}`);
+    router.push(`/product?id=${product._id}`);
   };
 
   return (
-    <div className="catelouge">
+    <div className="catelouge" onClick={handleClick}>
       <div className="catelouge__image-container">
-        <Link href="/product?id=123401">
+        <Link href={`/product?id=${product._id}`}>
           <Image
-            src={`/${product.image}`}
+            src={`/${product.image}.webp`}
             alt="hero"
             fill
             className="catelouge__image"

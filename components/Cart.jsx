@@ -24,7 +24,7 @@ const Cart = () => {
   } = {
     totalPrice: "10",
     totalQuantities: "2",
-    cartItems: { length: 1 },
+    cartItems: { length: 0 },
     setShowCart: "40",
     toggleCartItemQuanitity: "50",
     onRemove: "60",
@@ -69,7 +69,7 @@ const Cart = () => {
               </div>
             ))} */
             // prototype, update code once Jotai is set
-            cartItems.length >= 1 && <CartCard />
+            cartItems.length >= 1 && cartItems.map((item) => <CartCard />)
           }
         </div>
       </div>

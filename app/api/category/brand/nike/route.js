@@ -6,6 +6,7 @@ import { connectToDb, getDb } from "../../../../../db/db";
 
 export const GET = async (request) => {
   let db;
+  var sneakerData;
   try {
     //   // await connectToDB();
     await connectToDb((err) => {
@@ -19,8 +20,8 @@ export const GET = async (request) => {
 
     try {
       const collection = db.collection("sneakerDetails");
-      const sneakerData = await collection.find({}).toArray();
-      console.log("sneaker data is here", JSON.stringify(sneakerData));
+      sneakerData = await collection.find({}).toArray();
+      console.log("sneaker data is here");
     } catch (error) {
       console.log("collection fetching error", error);
     }
@@ -51,7 +52,7 @@ export const GET = async (request) => {
     ];
 
     // net ninja video 17 for mongo db, great way to do response
-    return new Response(JSON.stringify(data), { status: 200 });
+    return new Response(JSON.stringify(sneakerData), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch the brands data", { status: 500 });
   }

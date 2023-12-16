@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { onAdd } from "../store/cartStore";
 
 const page = () => {
   const handleCLick = null;
@@ -42,9 +43,11 @@ const page = () => {
           us. Call us 1800-001-001
         </p>
         <h1 className="product__price">{`$${productData?.price}`}</h1>
-        <button onClick={handleCLick} className="add-to-cart-btn">
+        <button onClick={onAdd} className="add-to-cart-btn">
           Add to cart
         </button>
+
+        {/* I need to add qty + - to set quantity and get from cart store */}
       </div>
     </div>
   );
