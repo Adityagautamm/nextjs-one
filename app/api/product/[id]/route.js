@@ -1,35 +1,31 @@
+import { connectToDb, getDb } from "../../db/db";
 export const GET = async (request, { params }) => {
+  //DB
+  let db;
+  var productData;
+  const productId = params.id;
   try {
-    //DB
-    // const prompts = await Prompt.find({ creator: params.id }).populate(
-    //   "creator"
-    // );
-
-    //const prompt = await Prompt.findById(params.id).populate("creator");
-    const productId = params.id;
-    const productData = handleProductSelection(productId);
-
-    function handleProductSelection(productId) {
-      switch (productId) {
-        case "123401":
-          // Code to handle product 1
-          return { name: "Product 1", price: 10.99, image: "123401.webp" };
-
-        case "123402":
-          // Code to handle product 2
-          return { name: "Product 2", price: 10.99 };
-        case "123403":
-          // Code to handle product 3
-          return { name: "Product 1", price: 10.99 };
-
-        default:
-          return { name: "Product 1", price: 10.99 };
+    //   // await connectToDB();
+    await connectToDb((err) => {
+      if (!err) {
+        console.log("DB connection is working");
+        db = getDb();
+      } else {
+        console.log("DB not working");
       }
+    });
+
+    try {
+      const collection = db.collection("sneakerDetails");
+      productData = await collection.findById(productId);
+      console.log(" product data is here");
+    } catch (error) {
+      console.log("collection fetching error", error);
     }
 
     return new Response(JSON.stringify(productData), { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch prompts created by user", {
+    return new Response("ailed to fetch the user with id", {
       status: 500,
     });
   }

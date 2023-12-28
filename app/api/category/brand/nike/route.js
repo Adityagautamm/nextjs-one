@@ -1,29 +1,42 @@
 //to set up a model if you have a DB and make connection
 //import Prompt from "@models/prompt";
 //import { connectToDB } from "@utils/database";
-
-import { connectToDb, getDb } from "../../../../../db/db";
+import mongoose from "mongoose";
+import dbConnect from "../../../db/db";
+import sneakers from "../../../db/models/sneakerDetails";
 
 export const GET = async (request) => {
-  let db;
-  var sneakerData;
+  // let db;
+  let sneakerData;
   try {
     //   // await connectToDB();
-    await connectToDb((err) => {
-      if (!err) {
-        console.log("DB connection is working");
-        db = getDb();
-      } else {
-        console.log("DB not working");
-      }
-    });
+    // await connectToDb((err) => {
+    //   if (!err) {
+    //     console.log("DB connection is working");
+    //     db = getDb();
+    //   } else {
+    //     console.log("DB not working");
+    //   }
+    // });
+
+    await dbConnect();
+
+    // try {
+    //   const collection = db.collection("sneakerDetails");
+    //   sneakerData = await collection.find({}).toArray();
+    //   console.log("sneaker data is here");
+    // }
 
     try {
-      const collection = db.collection("sneakerDetails");
-      sneakerData = await collection.find({}).toArray();
-      console.log("sneaker data is here");
+      console.log(
+        "mongo connection ready state",
+        mongoose.connection.readyState
+      );
+      sneakerData = await sneakers.find({});
+      console.log("sneakerData", JSON.stringify(sneakerData));
     } catch (error) {
       console.log("collection fetching error", error);
+      return new Response("Failed to fetch the brands data", { status: 500 });
     }
 
     // db.collection("sneakerDetails")
@@ -37,20 +50,6 @@ export const GET = async (request) => {
     //   .catch(() => {
     //     console.log("Mongo db data connect issue");
     //   });
-
-    const data = [
-      { name: "one", price: "$50", image: "one.webp" },
-      { name: "two", price: "$40", image: "one.webp" },
-      { name: "three", price: "$60", image: "one.webp" },
-      { name: "four", price: "$70", image: "one.webp" },
-      { name: "five", price: "$80", image: "one.webp" },
-      { name: "six", price: "$50", image: "one.webp" },
-      { name: "seven", price: "$40", image: "one.webp" },
-      { name: "eight", price: "$60", image: "one.webp" },
-      { name: "nine", price: "$70", image: "one.webp" },
-      { name: "ten", price: "$80", image: "one.webp" },
-    ];
-
     // net ninja video 17 for mongo db, great way to do response
     return new Response(JSON.stringify(sneakerData), { status: 200 });
   } catch (error) {
