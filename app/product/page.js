@@ -9,10 +9,9 @@ const page = () => {
   const searchParams = useSearchParams();
   const productId = searchParams.get("id");
   const [productData, setProductData] = useState([]);
-  const handleCLick = null;
 
   const fetchData = async () => {
-    const response = await fetch(`/api/product/id:${productId}`);
+    const response = await fetch(`/api/product/${productId}`);
     const data = await response.json();
     console.log("server data:", data);
     setProductData(data);
@@ -20,7 +19,7 @@ const page = () => {
 
   useEffect(() => {
     fetchData();
-  }, [productId]);
+  }, []);
 
   console.log("product data:", productData);
   console.log("productId", productId);
@@ -38,7 +37,10 @@ const page = () => {
         <h1 className="product__title">{productData?.name}</h1>
         <p className="product__subtitle">{productData?.description}</p>
         <h1 className="product__price">{`$${productData?.price}`}</h1>
-        <button onClick={onAdd} className="add-to-cart-btn">
+        <button
+          onClick={() => onAdd(productData, 1)}
+          className="add-to-cart-btn"
+        >
           Add to cart
         </button>
 

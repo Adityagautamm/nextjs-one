@@ -46,24 +46,25 @@ export const decQty = () => {
 };
 
 export const onAdd = (productDetail, quantity) => {
-  const updateCartItems = useSetAtom(cartItemsAtom);
-  const updateTotalPrice = useSetAtom(totalPriceAtom);
-  const updateTotalQuantities = useSetAtom(totalQuantitiesAtom);
+  const [cartItems, updateCartItems] = useAtom(cartItemsAtom);
+  const [totalPrice, updateTotalPrice] = useAtom(totalPriceAtom);
+  const [totalQuantities, updateTotalQuantities] = useAtom(totalQuantitiesAtom);
 
   // Use find to check if the item is already in the cart
-  const existingItem = updateCartItems.find(
-    (cartItem) => cartItem.id === item.id
+  const existingItem = cartItems.find(
+    (cartItem) => cartItem._id === productDetail._id
   );
 
   if (existingItem) {
-    updateTotalPrice((prevTotalPrice) => {
-      prevTotalPrice + productDetail.price * quantity;
-    });
+    updateTotalPrice(
+      (prevTotalPrice) => prevTotalPrice + productDetail.price * quantity
+    );
     updateTotalQuantities((prevTotalQuantity) => prevTotalQuantity + quantity);
-    const updateCart = updateCartItems.map((item) => {
+    const updateCart = cartItems.map((item) => {
       if (item._id === productDetail._id) {
         return { ...item, quantity: item.quantity + quantity };
       }
+      return item;
     });
 
     updateCartItems(updateCart);
@@ -77,10 +78,12 @@ export const onAdd = (productDetail, quantity) => {
         quantity: productDetail.quantity,
       },
     ]);
-    updateTotalPrice((prevTotalPrice) => prevTotalPrice + quantity);
-    updateTotalPrice((prevTotalPrice) => {
-      prevTotalPrice + productDetail.price * quantity;
-    });
+    updateTotalQuantities(
+      (prevTotalQuantities) => prevTotalQuantities + quantity
+    );
+    updateTotalPrice(
+      (prevTotalPrice) => prevTotalPrice + productDetail.price * quantity
+    );
     toast.success(`${quantity} ${productDetail.name} added to the cart.`);
   }
 };

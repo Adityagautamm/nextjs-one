@@ -1,4 +1,5 @@
-import { connectToDb, getDb } from "../../db/db";
+import dbConnect from "../../db/db";
+import sneakers from "../../db/models/sneakerDetails";
 export const GET = async (request, { params }) => {
   //DB
   let db;
@@ -6,18 +7,11 @@ export const GET = async (request, { params }) => {
   const productId = params.id;
   try {
     //   // await connectToDB();
-    await connectToDb((err) => {
-      if (!err) {
-        console.log("DB connection is working");
-        db = getDb();
-      } else {
-        console.log("DB not working");
-      }
-    });
+    await dbConnect();
 
     try {
-      const collection = db.collection("sneakerDetails");
-      productData = await collection.findById(productId);
+      //   const collection = db.collection("sneakerDetails");
+      productData = await sneakers.findById(productId);
       console.log(" product data is here");
     } catch (error) {
       console.log("collection fetching error", error);

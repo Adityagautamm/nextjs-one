@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const CatelougeCard = ({ product }) => {
+  const router = useRouter();
   const handleClick = (id) => {
     router.push(`/product?id=${product._id}`);
   };
