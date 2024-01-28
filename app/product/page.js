@@ -2,13 +2,15 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { onAdd } from "../store/cartStore";
+import { useCart } from "../../hooks/useCart";
+import toast, { Toaster } from "react-hot-toast";
 
 const page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const productId = searchParams.get("id");
   const [productData, setProductData] = useState([]);
+  const { onAdd } = useCart();
 
   const fetchData = async () => {
     const response = await fetch(`/api/product/${productId}`);
@@ -25,6 +27,7 @@ const page = () => {
   console.log("productId", productId);
   return (
     <div className="product__container">
+      <Toaster />
       <div className="product__containe-left">
         <Image
           src={`/${productData?.image}.webp`}

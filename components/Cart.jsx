@@ -10,25 +10,20 @@ import {
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 import { CartCard } from ".";
-import { UseShowCart } from "../app/store/cartStore";
+import {
+  UseShowCart,
+  UseCartItems,
+  UseTotalPrice,
+  UseTotalQuantities,
+} from "../store/cartStore";
 
 const Cart = () => {
   // make it global so that any page can close cart use jota
   const [showCart, setShowCart] = UseShowCart();
-  const {
-    totalPrice,
-    totalQuantities,
-    cartItems,
-    toggleCartItemQuanitity,
-    onRemove,
-  } = {
-    totalPrice: "10",
-    totalQuantities: "2",
-    cartItems: { length: 0 },
-    setShowCart: "40",
-    toggleCartItemQuanitity: "50",
-    onRemove: "60",
-  };
+  const [totalQuantities] = UseTotalQuantities();
+  const [totalPrice] = UseTotalPrice();
+  const [cartItems] = UseCartItems();
+
   return (
     <div className="cart-wrapper">
       <div className="cart-container">
@@ -69,7 +64,16 @@ const Cart = () => {
               </div>
             ))} */
             // prototype, update code once Jotai is set
-            cartItems.length >= 1 && cartItems.map((item) => <CartCard />)
+            cartItems.length >= 1 &&
+              cartItems.map((item) => (
+                <CartCard
+                  key={item.productId}
+                  productName={item.productName}
+                  price={item.price}
+                  quantity={item.quantity}
+                  image={item.image}
+                />
+              ))
           }
         </div>
       </div>

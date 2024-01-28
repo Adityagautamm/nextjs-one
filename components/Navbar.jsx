@@ -5,10 +5,11 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { AiOutlineShopping } from "react-icons/ai";
 import { Cart } from "@/components";
-import { UseShowCart } from "../app/store/cartStore";
+import { UseShowCart, UseTotalQuantities } from "../store/cartStore";
 //Add cart logo and the use state for that https://www.youtube.com/watch?v=4mOkFXyxfsU&t=243s
 const Navbar = () => {
   const [showCart, setShowCart] = UseShowCart();
+  const [totalQuantities] = UseTotalQuantities();
   return (
     <header className="navbar">
       <nav className="navbar__body">
@@ -51,7 +52,7 @@ const Navbar = () => {
             onClick={() => setShowCart(true)}
           >
             <AiOutlineShopping />
-            <span className="cart-item-qty">1</span>
+            <span className="cart-item-qty">{totalQuantities}</span>
           </button>
           {showCart && <Cart />}
         </div>

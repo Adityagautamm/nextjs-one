@@ -8,16 +8,21 @@ import {
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 
-const CartCard = () => {
+const CartCard = (key, productName, quantity, price, image) => {
   return (
     <div className="product">
       <div className="cart-product-image">
-        <Image src="/one.webp" className="object-contain" alt="product" fill />
+        <Image
+          src={`/${image}.webp`}
+          className="object-contain"
+          alt="product"
+          fill
+        />
       </div>
       <div className="item-desc">
         <div className="item-desc-top">
-          <div className="cart-product-name">Sneaker</div>
-          <div className="cart-product-price">$50</div>
+          <div className="cart-product-name">{productName}</div>
+          <div className="cart-product-price">{`$${price}`}</div>
         </div>
         <div className="item-desc-bottom">
           <div>
